@@ -22,7 +22,6 @@ exports.getUserById = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   const userData = req.body;
-  console.log(userData);
   try {
     const existingUser = await User.findOne({ email: userData.email });
     if (existingUser) {
@@ -46,7 +45,7 @@ exports.updateUser = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       {
-        email: userData.email,
+        ...userData,
       },
       {
         new: true, // Returns updated new data instead of old one

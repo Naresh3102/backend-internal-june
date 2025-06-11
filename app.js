@@ -5,6 +5,7 @@ const userRoutes = require("./Routes/userRoutes");
 const productRoutes = require("./Routes/productRoutes");
 const morgan = require("morgan");
 const globalErrorHandler = require("./middlewares/errorMiddleware");
+const authRoutes = require("./Routes/authRoutes");
 dotenv.config();
 
 const server = express();
@@ -27,6 +28,7 @@ server.get("/", (req, res) => {
 
 server.use("/users", userRoutes);
 server.use("/products", productRoutes);
+server.use("/auth", authRoutes);
 
 // Not found routes
 server.use((req, res, next) => {
