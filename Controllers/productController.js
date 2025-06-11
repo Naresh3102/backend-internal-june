@@ -29,7 +29,7 @@ const getAllProducts = async (req, res, next) => {
       query.category = category;
     }
 
-    if (search.trim()) {
+    if (search && search.trim()) {
       query.title = { $regex: search, $options: "i" }; // case-insensitive
     }
 

@@ -22,9 +22,13 @@ const login = async (req, res, next) => {
       });
     }
 
-    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRY,
-    });
+    const token = jwt.sign(
+      { email: user.email, id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRY,
+      }
+    );
 
     res.cookie("jwt", token, {
       maxAge: parseInt(process.env.COOKIE_EXPIRY),
