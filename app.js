@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const userRoutes = require("./Routes/userRoutes");
 const productRoutes = require("./Routes/productRoutes");
@@ -10,6 +11,10 @@ const authRoutes = require("./Routes/authRoutes");
 dotenv.config();
 
 const server = express();
+// server.use(cors({
+//   origin: ["http://localhost:5173", "http://localhost:5174"]
+// }));
+server.use(cors());
 server.use(express.json());
 server.use(cookieParser());
 
